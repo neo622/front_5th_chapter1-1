@@ -128,7 +128,5 @@ export const MainPage = {
       </div>
     `;
   },
-  afterRender: () => {
-
-  }
+  afterRender: () => {},
 };

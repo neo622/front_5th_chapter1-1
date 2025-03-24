@@ -1,7 +1,7 @@
 import { html } from "../common/useHtml";
 import { Header } from "../common/Header";
 import { Footer } from "../common/Footer";
-import { getUser } from "../common/store";
+import { getUser, updateProfile } from "../common/store";
 
 export const ProfilePage = {
   render: () => {
@@ -28,7 +28,7 @@ export const ProfilePage = {
                       type="text"
                       id="username"
                       name="username"
-                      value="${currentUser.username || ""}"
+                      value="${currentUser?.username || ""}"
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -42,7 +42,7 @@ export const ProfilePage = {
                       type="email"
                       id="email"
                       name="email"
-                      value="${currentUser.email || ""}"
+                      value="${currentUser?.email || ""}"
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -58,7 +58,7 @@ export const ProfilePage = {
                       rows="4"
                       class="w-full p-2 border rounded"
                     >
-                    ${currentUser.bio || ""}</textarea
+                    ${currentUser?.bio || ""}</textarea
                     >
                   </div>
                   <button
@@ -81,10 +81,12 @@ export const ProfilePage = {
     if (profileForm) {
       profileForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        let username = document.getElementById("username").value;
         let email = document.getElementById("email").value;
         let bio = document.getElementById("bio").value;
         console.log(email, bio);
-      })
+        updateProfile(username, email, bio);
+      });
     }
-  }
+  },
 };
