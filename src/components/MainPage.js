@@ -1,13 +1,15 @@
 import { html } from "../common/useHtml";
 import { Header } from "../common/Header";
 import { Footer } from "../common/Footer";
+import { getUser } from "../common/store";
 
 export const MainPage = {
   render: () => {
+    const currentUser = getUser();
     return html`
       <div class="bg-gray-100 min-h-screen flex justify-center">
         <div class="max-w-md w-full">
-          ${Header(true)}
+          ${Header(currentUser)}
           <main class="p-4">
             <div class="mb-4 bg-white rounded-lg shadow p-4">
               <textarea
@@ -126,4 +128,7 @@ export const MainPage = {
       </div>
     `;
   },
+  afterRender: () => {
+
+  }
 };

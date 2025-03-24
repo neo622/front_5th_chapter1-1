@@ -1,5 +1,6 @@
 import { html } from "../common/useHtml";
 import { Router } from "../public/router";
+import { setUser } from "../common/store";
 
 export const LoginPage = {
   render: () => {
@@ -57,6 +58,7 @@ export const LoginPage = {
         let userName = document.getElementById("user-id").value;
         console.log(userName); //ok
         // localStorage에 정보 저장
+        setUser(userName);
         Router.navigate("/");
       });
     }

@@ -8,4 +8,8 @@ export const getUser = () => {
 
 export const setUser = (value) => {
   window.localStorage.setItem("user", value);
-};
+}
+
+export const removeUser = () => {
+  window.localStorage.removeItem("user");
+}
