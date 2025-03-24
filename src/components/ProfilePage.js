@@ -1,9 +1,12 @@
 import { html } from "../common/useHtml";
 import { Header } from "../common/Header";
 import { Footer } from "../common/Footer";
+import { getUser } from "../common/store";
 
 export const ProfilePage = {
   render: () => {
+    const currentUser = JSON.parse(getUser());
+    console.log(currentUser);
     return html`
       <div id="root">
         <div class="bg-gray-100 min-h-screen flex justify-center">
@@ -14,7 +17,7 @@ export const ProfilePage = {
                 <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
                   내 프로필
                 </h2>
-                <form>
+                <form id="profile-form">
                   <div class="mb-4">
                     <label
                       for="username"
@@ -25,7 +28,7 @@ export const ProfilePage = {
                       type="text"
                       id="username"
                       name="username"
-                      value="홍길동"
+                      value=${currentUser.username}
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -39,7 +42,7 @@ export const ProfilePage = {
                       type="email"
                       id="email"
                       name="email"
-                      value="hong@example.com"
+                      value=${currentUser.email}
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -55,7 +58,7 @@ export const ProfilePage = {
                       rows="4"
                       class="w-full p-2 border rounded"
                     >
-안녕하세요, 항해플러스에서 열심히 공부하고 있는 홍길동입니다.</textarea
+                    ${currentUser.bio}</textarea
                     >
                   </div>
                   <button
@@ -73,4 +76,15 @@ export const ProfilePage = {
       </div>
     `;
   },
+  afterRender: () => {
+    const profileForm = document.getElementById("profile-form");
+    if (profileForm) {
+      profileForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let email = document.getElementById("email").value;
+        let bio = document.getElementById("bio").value;
+        console.log(email, bio);
+      })
+    }
+  }
 };

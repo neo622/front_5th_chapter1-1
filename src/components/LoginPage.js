@@ -13,7 +13,7 @@ export const LoginPage = {
           <form id="login-form">
             <div class="mb-4">
               <input
-                id="user-id"
+                id="username"
                 type="text"
                 placeholder="이메일 또는 전화번호"
                 class="w-full p-2 border rounded"
@@ -55,7 +55,7 @@ export const LoginPage = {
     if (loginForm) {
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        let userName = document.getElementById("user-id").value;
+        let userName = document.getElementById("username").value;
         console.log(userName); //ok
         // localStorage에 정보 저장
         setUser(userName);

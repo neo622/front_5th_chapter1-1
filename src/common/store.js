@@ -7,7 +7,7 @@ export const getUser = () => {
 };
 
 export const setUser = (value) => {
-  window.localStorage.setItem("user", value);
+  window.localStorage.setItem("user", JSON.stringify({ "username": value, "email": "", "bio": "" }));
 }
 
 export const removeUser = () => {

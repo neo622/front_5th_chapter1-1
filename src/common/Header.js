@@ -1,5 +1,4 @@
 import { html } from "./useHtml";
-import { getUser } from "./store";
 
 export const Header = (loggedIn) => {
   {
