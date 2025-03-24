@@ -28,7 +28,7 @@ export const ProfilePage = {
                       type="text"
                       id="username"
                       name="username"
-                      value=${currentUser.username}
+                      value="${currentUser.username || ""}"
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -42,7 +42,7 @@ export const ProfilePage = {
                       type="email"
                       id="email"
                       name="email"
-                      value=${currentUser.email}
+                      value="${currentUser.email || ""}"
                       class="w-full p-2 border rounded"
                     />
                   </div>
@@ -58,7 +58,7 @@ export const ProfilePage = {
                       rows="4"
                       class="w-full p-2 border rounded"
                     >
-                    ${currentUser.bio}</textarea
+                    ${currentUser.bio || ""}</textarea
                     >
                   </div>
                   <button
