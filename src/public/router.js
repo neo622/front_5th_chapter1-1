@@ -50,7 +50,7 @@ export const Router = {
         if (e.target.id === "logout") {
           removeUser();
         }
-        const targetPath = a.getAttribute("href");
+        const targetPath = e.target.getAttribute("href");
         history.pushState(null, "", targetPath);
         Router.render();
       }
