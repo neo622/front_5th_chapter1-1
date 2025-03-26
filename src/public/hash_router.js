@@ -9,10 +9,12 @@ import {
   updateProfile,
 } from "../common/store.js";
 
+const base = import.meta.env.BASE_URL;
+
 export const routes = {
-  "#/": MainPage,
-  "#/login": LoginPage,
-  "#/profile": ProfilePage,
+  [`${base}#/`]: MainPage,
+  [`${base}#/login`]: LoginPage,
+  [`${base}#/profile`]: ProfilePage,
 };
 
 export const Router = {
@@ -21,18 +23,19 @@ export const Router = {
     const root = document.getElementById("root");
     const currentUser = getUser();
     let path = window.location.hash;
+    console.log("hashpath", path);
     const page = routes[path] || ErrorPage;
     root.innerHTML = page.render();
 
     if (page.afterRender) {
       page.afterRender();
     }
-    if (path === "#/profile" && !currentUser) {
-      location.hash = "#/login";
+    if (path === `${base}#/profile` && !currentUser) {
+      location.hash = `${base}#/login`;
       Router.render();
     }
     if (path === "#/login" && currentUser) {
-      location.hash = "#/";
+      location.hash = `${base}#/`;
       Router.render();
     }
 
@@ -42,12 +45,12 @@ export const Router = {
         e.preventDefault();
         if (e.target && e.target.id === "logout") {
           removeUser();
-          Router.navigate("#/login");
+          Router.navigate(`${base}#/login`);
           return;
         }
         const targetPath = e.target.getAttribute("href");
         console.log(targetPath);
-        location.hash = `#${targetPath}`;
+        location.hash = `${base}#${targetPath}`;
         Router.render();
       }
     });
@@ -59,7 +62,7 @@ export const Router = {
         console.log(userName); //ok
         // localStorage에 정보 저장
         setUser(userName);
-        Router.navigate("#/");
+        Router.navigate(`${base}#/`);
       }
       if (e.target && e.target.id === "profile-form") {
         e.preventDefault();

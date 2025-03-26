@@ -9,29 +9,33 @@ import {
   updateProfile,
 } from "../common/store.js";
 
+const base = import.meta.env.BASE_URL;
+
 export const routes = {
-  "/": MainPage,
-  "/login": LoginPage,
-  "/profile": ProfilePage,
+  [`${base}`]: MainPage,
+  [`${base}login`]: LoginPage,
+  [`${base}profile`]: ProfilePage,
 };
 
 export const Router = {
   render: () => {
+    console.log(base);
     document.body.innerHTML = '<div id="root"></div>';
     const root = document.getElementById("root");
     const currentUser = getUser();
     let path = window.location.pathname;
+    console.log("path2?", path);
     const page = routes[path] || ErrorPage;
     root.innerHTML = page.render();
 
     if (page.afterRender) {
       page.afterRender();
     }
-    if (path === "/profile" && !currentUser) {
+    if (path === `${base}profile` && !currentUser) {
       history.replaceState(null, "", "/login");
       Router.render();
     }
-    if (path === "/login" && currentUser) {
+    if (path === `${base}login` && currentUser) {
       history.replaceState(null, "", "/");
       Router.render();
     }
@@ -42,11 +46,12 @@ export const Router = {
         e.preventDefault();
         if (e.target && e.target.id === "logout") {
           removeUser();
-          Router.navigate("/login");
+          Router.navigate(`${base}login`);
           return;
         }
-        const targetPath = e.target.getAttribute("href");
-        history.pushState(null, "", targetPath);
+        const targetPath = e.target.getAttribute("href").replace(/^\//, "");
+        console.log("targetpath", targetPath)
+        history.pushState(null, "", `${base}${targetPath}`);
         Router.render();
       }
     });
@@ -58,7 +63,7 @@ export const Router = {
         console.log(userName); //ok
         // localStorage에 정보 저장
         setUser(userName);
-        Router.navigate("/login");
+        Router.navigate(`${base}`);
       }
       if (e.target && e.target.id === "profile-form") {
         e.preventDefault();
@@ -71,6 +76,7 @@ export const Router = {
     });
   },
   navigate: (path) => {
+    console.log("navigate!", path);
     history.pushState(null, "", path);
     Router.render();
   },
