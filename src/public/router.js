@@ -37,6 +37,8 @@ export const Router = {
         e.preventDefault();
         if (e.target && e.target.id === "logout") {
           removeUser();
+          Router.navigate("/login");
+          return
         }
         const targetPath = e.target.getAttribute("href");
         history.pushState(null, "", targetPath);
@@ -51,7 +53,7 @@ export const Router = {
         console.log(userName); //ok
         // localStorage에 정보 저장
         setUser(userName);
-        Router.navigate("/");
+        Router.navigate("/login");
       }
       if (e.target && e.target.id === "profile-form") {
         e.preventDefault();

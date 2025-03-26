@@ -13,7 +13,7 @@ export const LoginPage = {
               <input
                 id="username"
                 type="text"
-                placeholder="이메일 또는 전화번호"
+                placeholder="사용자 이름"
                 class="w-full p-2 border rounded"
               />
             </div>

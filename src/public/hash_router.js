@@ -37,7 +37,7 @@ export const Router = {
         e.preventDefault();
         if (e.target && e.target.id === "logout") {
           removeUser();
-          Router.navigate("#/");
+          Router.navigate("#/login");
           return
         }
         const targetPath = e.target.getAttribute("href");
