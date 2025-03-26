@@ -1,6 +1,4 @@
 import { html } from "../common/useHtml";
-import { Router } from "../public/router";
-import { setUser } from "../common/store";
 
 export const LoginPage = {
   render: () => {
@@ -47,20 +45,5 @@ export const LoginPage = {
         </div>
       </main>
     `;
-  },
-  afterRender: () => {
-    // submit -> 홈으로 리다이렉트
-    //        -> 로그인 처리
-    const loginForm = document.getElementById("login-form");
-    if (loginForm) {
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let userName = document.getElementById("username").value;
-        console.log(userName); //ok
-        // localStorage에 정보 저장
-        setUser(userName);
-        Router.navigate("/");
-      });
-    }
-  },
+  }
 };

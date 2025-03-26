@@ -1,7 +1,7 @@
 import { html } from "../common/useHtml";
 import { Header } from "../common/Header";
 import { Footer } from "../common/Footer";
-import { getUser, updateProfile } from "../common/store";
+import { getUser } from "../common/store";
 
 export const ProfilePage = {
   render: () => {
@@ -76,17 +76,17 @@ export const ProfilePage = {
       </div>
     `;
   },
-  afterRender: () => {
-    const profileForm = document.getElementById("profile-form");
-    if (profileForm) {
-      profileForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let username = document.getElementById("username").value;
-        let email = document.getElementById("email").value;
-        let bio = document.getElementById("bio").value;
-        console.log(email, bio);
-        updateProfile(username, email, bio);
-      });
-    }
-  },
+  // afterRender: () => {
+  //   const profileForm = document.getElementById("profile-form");
+  //   if (profileForm) {
+  //     profileForm.addEventListener("submit", (e) => {
+  //       e.preventDefault();
+  //       let username = document.getElementById("username").value;
+  //       let email = document.getElementById("email").value;
+  //       let bio = document.getElementById("bio").value;
+  //       console.log(email, bio);
+  //       updateProfile(username, email, bio);
+  //     });
+  //   }
+  // },
 };

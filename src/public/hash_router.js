@@ -2,42 +2,72 @@ import { MainPage } from "../components/MainPage";
 import { LoginPage } from "../components/LoginPage";
 import { ProfilePage } from "../components/ProfilePage.js";
 import { ErrorPage } from "../components/ErrorPage.js";
-import { getUser, removeUser } from "../common/store.js";
+import { getUser, setUser, removeUser, updateProfile } from "../common/store.js";
 
 export const routes = {
-  "/": MainPage,
-  "/login": LoginPage,
-  "/profile": ProfilePage,
+  "#/": MainPage,
+  "#/login": LoginPage,
+  "#/profile": ProfilePage,
 };
 
 export const Router = {
   render: () => {
+    document.body.innerHTML = '<div id="root"></div>';
     const root = document.getElementById("root");
     const currentUser = getUser();
-    let path = location.hash.replace("#", "") || "/";
+    let path = window.location.hash;
     const page = routes[path] || ErrorPage;
     root.innerHTML = page.render();
 
     if (page.afterRender) {
       page.afterRender();
     }
-    if (path === "/profile" && !currentUser) {
+    if (path === "#/profile" && !currentUser) {
       location.hash = "#/login";
-      return;
+      Router.render();
+    }
+    if (path === "#/login" && currentUser) {
+      location.hash = "#/";
+      Router.render();
     }
 
-    document.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", (e) => {
+    // 이벤트 위임 방식으로 변경
+    root.addEventListener("click", (e) => {
+      if (e.target.matches("a")) {
         e.preventDefault();
-        if (e.target.id === "logout") {
+        if (e.target && e.target.id === "logout") {
           removeUser();
+          Router.navigate("#/");
+          return
         }
-        const targetPath = a.getAttribute("href");
+        const targetPath = e.target.getAttribute("href");
+        console.log(targetPath)
         location.hash = `#${targetPath}`;
-      });
-    });
+        Router.render();
+      }
+    })
+
+    root.addEventListener("submit", (e) => {
+      if (e.target && e.target.id === "login-form") {
+        e.preventDefault();
+        let userName = document.getElementById("username").value;
+        console.log(userName); //ok
+        // localStorage에 정보 저장
+        setUser(userName);
+        Router.navigate("#/");
+      }
+      if (e.target && e.target.id === "profile-form") {
+        e.preventDefault();
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let bio = document.getElementById("bio").value;
+        console.log(email, bio);
+        updateProfile(username, email, bio);
+      }
+    })
   },
   navigate: (path) => {
-    location.hash = `#${path}`;
+    location.hash = path;
+    Router.render();
   },
 };
