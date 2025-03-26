@@ -45,5 +45,5 @@ export const LoginPage = {
         </div>
       </main>
     `;
-  }
+  },
 };

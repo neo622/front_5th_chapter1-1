@@ -2,7 +2,12 @@ import { MainPage } from "../components/MainPage";
 import { LoginPage } from "../components/LoginPage";
 import { ProfilePage } from "../components/ProfilePage.js";
 import { ErrorPage } from "../components/ErrorPage.js";
-import { getUser, setUser, removeUser, updateProfile } from "../common/store.js";
+import {
+  getUser,
+  setUser,
+  removeUser,
+  updateProfile,
+} from "../common/store.js";
 
 export const routes = {
   "/": MainPage,
@@ -38,13 +43,13 @@ export const Router = {
         if (e.target && e.target.id === "logout") {
           removeUser();
           Router.navigate("/login");
-          return
+          return;
         }
         const targetPath = e.target.getAttribute("href");
         history.pushState(null, "", targetPath);
         Router.render();
       }
-    })
+    });
 
     root.addEventListener("submit", (e) => {
       if (e.target && e.target.id === "login-form") {
@@ -63,7 +68,7 @@ export const Router = {
         console.log(email, bio);
         updateProfile(username, email, bio);
       }
-    })
+    });
   },
   navigate: (path) => {
     history.pushState(null, "", path);

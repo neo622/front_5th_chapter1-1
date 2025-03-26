@@ -5,7 +5,9 @@ export const Header = (loggedIn) => {
     const presentLink = location.pathname;
     const presentNav = (path) => {
       const isActivate = path === presentLink;
-      const activatedClass = isActivate ? "text-blue-600 font-bold" : "text-gray-600";
+      const activatedClass = isActivate
+        ? "text-blue-600 font-bold"
+        : "text-gray-600";
       return activatedClass;
     };
 
@@ -17,18 +19,10 @@ export const Header = (loggedIn) => {
         ? html` <nav class="bg-white shadow-md p-2 sticky top-14">
             <ul class="flex justify-around">
               <li>
-                <a
-                  href="/"
-                  class="${presentNav("/")}"
-                  >홈</a
-                >
+                <a href="/" class="${presentNav("/")}">홈</a>
               </li>
               <li>
-                <a
-                  href="/profile"
-                  class="${presentNav("/profile")}"
-                  >프로필</a
-                >
+                <a href="/profile" class="${presentNav("/profile")}">프로필</a>
               </li>
               <li>
                 <a id="logout" href="#" class="text-gray-600">로그아웃</a>
@@ -38,11 +32,7 @@ export const Header = (loggedIn) => {
         : html` <nav class="bg-white shadow-md p-2 sticky top-14">
             <ul class="flex justify-around">
               <li>
-                <a
-                  href="/"
-                  class="${presentNav("/")}"
-                  >홈</a
-                >
+                <a href="/" class="${presentNav("/")}">홈</a>
               </li>
 
               <li><a href="/login" class="text-gray-600">로그인</a></li>
