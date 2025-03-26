@@ -1,36 +1,36 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const i of s.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&r(i)}).observe(document,{childList:!0,subtree:!0});function l(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(e){if(e.ep)return;e.ep=!0;const s=l(e);fetch(e.href,s)}})();const n=(t,...o)=>t.reduce((l,r,e)=>l+r+(o[e]||""),""),u=t=>{{const o=location.pathname,l=r=>r===o?"text-blue-600 font-bold":"text-gray-600";return n`
+(function(){const l=document.createElement("link").relList;if(l&&l.supports&&l.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const i of s.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&r(i)}).observe(document,{childList:!0,subtree:!0});function o(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(e){if(e.ep)return;e.ep=!0;const s=o(e);fetch(e.href,s)}})();const a=(t,...l)=>t.reduce((o,r,e)=>o+r+(l[e]||""),""),d=t=>{{const l=location.pathname,o=r=>r===l?"text-blue-600 font-bold":"text-gray-600";return a`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
-      ${t!==null?n` <nav class="bg-white shadow-md p-2 sticky top-14">
+      ${t!==null?a` <nav class="bg-white shadow-md p-2 sticky top-14">
             <ul class="flex justify-around">
               <li>
-                <a href="/" class="${l("/")}">홈</a>
+                <a href="/" class="${o("/")}">홈</a>
               </li>
               <li>
-                <a href="/profile" class="${l("/profile")}">프로필</a>
+                <a href="/profile" class="${o("/profile")}">프로필</a>
               </li>
               <li>
                 <a id="logout" href="#" class="text-gray-600">로그아웃</a>
               </li>
             </ul>
-          </nav>`:n` <nav class="bg-white shadow-md p-2 sticky top-14">
+          </nav>`:a` <nav class="bg-white shadow-md p-2 sticky top-14">
             <ul class="flex justify-around">
               <li>
-                <a href="/" class="${l("/")}">홈</a>
+                <a href="/" class="${o("/")}">홈</a>
               </li>
 
               <li><a href="/login" class="text-gray-600">로그인</a></li>
             </ul>
           </nav>`}
-    `}},m=n`
+    `}},n=a`
   <footer class="bg-gray-200 p-4 text-center">
     <p>&copy; 2024 항해플러스. All rights reserved.</p>
   </footer>
-`,d=()=>window.localStorage.getItem("user")||null,b=t=>{window.localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""}))},p=(t,o,l)=>{window.localStorage.setItem("user",JSON.stringify({username:t,email:o,bio:l}))},f=()=>{window.localStorage.removeItem("user")},g={render:()=>{const t=d();return n`
+`,c=()=>window.localStorage.getItem("user")||null,u=t=>{window.localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""}))},b=(t,l,o)=>{window.localStorage.setItem("user",JSON.stringify({username:t,email:l,bio:o}))},m=()=>{window.localStorage.removeItem("user")},p={render:()=>{const t=c();return a`
       <div class="bg-gray-100 min-h-screen flex justify-center">
         <div class="max-w-md w-full">
-          ${u(t)}
+          ${d(t)}
           <main class="p-4">
             <div class="mb-4 bg-white rounded-lg shadow p-4">
               <textarea
@@ -144,10 +144,10 @@
               </div>
             </div>
           </main>
-          ${m}
+          ${n}
         </div>
       </div>
-    `},afterRender:()=>{}},v={render:()=>n`
+    `},afterRender:()=>{}},f={render:()=>a`
       <main class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">
@@ -189,11 +189,11 @@
           </div>
         </div>
       </main>
-    `},x={render:()=>{const t=JSON.parse(d());return console.log(t),n`
+    `},v={render:()=>{const t=JSON.parse(c());return console.log(t),a`
       <div id="root">
         <div class="bg-gray-100 min-h-screen flex justify-center">
           <div class="max-w-md w-full">
-            ${u(!0)}
+            ${d(!0)}
             <main class="p-4">
               <div class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
@@ -252,11 +252,11 @@
                 </form>
               </div>
             </main>
-            ${m}
+            ${n}
           </div>
         </div>
       </div>
-    `}},h={render:()=>n`
+    `}},g={render:()=>a`
       <main class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div
           class="bg-white p-8 rounded-lg shadow-md w-full text-center"
@@ -276,4 +276,4 @@
           </a>
         </div>
       </main>
-    `},y={"/":g,"/login":v,"/profile":x},a={render:()=>{document.body.innerHTML='<div id="root"></div>';const t=document.getElementById("root"),o=d();let l=window.location.pathname;const r=y[l]||h;t.innerHTML=r.render(),r.afterRender&&r.afterRender(),l==="/profile"&&!o&&(history.replaceState(null,"","/login"),a.render()),l==="/login"&&o&&(history.replaceState(null,"","/"),a.render()),t.addEventListener("click",e=>{if(e.target.matches("a")){if(e.preventDefault(),e.target&&e.target.id==="logout"){f(),a.navigate("/login");return}const s=e.target.getAttribute("href");history.pushState(null,"",s),a.render()}}),t.addEventListener("submit",e=>{if(e.target&&e.target.id==="login-form"){e.preventDefault();let s=document.getElementById("username").value;console.log(s),b(s),a.navigate("/login")}if(e.target&&e.target.id==="profile-form"){e.preventDefault();let s=document.getElementById("username").value,i=document.getElementById("email").value,c=document.getElementById("bio").value;console.log(i,c),p(s,i,c)}})},navigate:t=>{history.pushState(null,"",t),a.render()}},w={init:()=>{a.render(),window.addEventListener("popstate",()=>{a.render()})}};w.init();
+    `};export{g as E,f as L,p as M,v as P,c as g,m as r,u as s,b as u};
