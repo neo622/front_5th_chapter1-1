@@ -19,23 +19,25 @@ export const routes = {
 
 export const Router = {
   render: () => {
+    console.log("base", base);
     document.body.innerHTML = '<div id="root"></div>';
     const root = document.getElementById("root");
     const currentUser = getUser();
     let path = window.location.hash;
-    console.log("hashpath", path);
-    const page = routes[path] || ErrorPage;
+    console.log("hashpath", `${base}${path}`);
+    const page = routes[`${base}${path}`] || ErrorPage;
     root.innerHTML = page.render();
 
     if (page.afterRender) {
       page.afterRender();
     }
-    if (path === `${base}#/profile` && !currentUser) {
-      location.hash = `${base}#/login`;
+    if (path === "#/profile" && !currentUser) {
+      console.log(currentUser);
+      location.hash = "#/login";
       Router.render();
     }
     if (path === "#/login" && currentUser) {
-      location.hash = `${base}#/`;
+      location.hash = "#/";
       Router.render();
     }
 
@@ -45,12 +47,12 @@ export const Router = {
         e.preventDefault();
         if (e.target && e.target.id === "logout") {
           removeUser();
-          Router.navigate(`${base}#/login`);
+          Router.navigate("#/login");
           return;
         }
         const targetPath = e.target.getAttribute("href");
-        console.log(targetPath);
-        location.hash = `${base}#${targetPath}`;
+        console.log("targetPath", targetPath);
+        location.hash = `${targetPath}`;
         Router.render();
       }
     });
@@ -62,7 +64,7 @@ export const Router = {
         console.log(userName); //ok
         // localStorage에 정보 저장
         setUser(userName);
-        Router.navigate(`${base}#/`);
+        Router.navigate("#/");
       }
       if (e.target && e.target.id === "profile-form") {
         e.preventDefault();
